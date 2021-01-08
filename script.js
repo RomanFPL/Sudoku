@@ -96,6 +96,7 @@ newGame.addEventListener('click', () => {
   field.forEach((x, y) => {
     if (gameBlock.easy[y] !== 0) {
       x.children[0].value = gameBlock.easy[y];
+     console.dir(x.children[0].setAttribute("disabled", "disabled"));
     }
   });
   level.textContent = Object.keys(gameBlock)[0];
@@ -116,28 +117,32 @@ check.addEventListener('click', () => {
 document.addEventListener('keydown', (e) => {
   if (e.key == "ArrowUp") {
     field.forEach((x,y) => {
-      (document.activeElement == x.children[0] && y>8) ? field[y-9].children[0].focus() : console.log('none');
+      if(document.activeElement == x.children[0] && y>8){
+      field[y-9].children[0].focus();
+      }
     });
   }
   if (e.key == "ArrowRight") {
-    console.log("work");
+    for (let i = 0; i < field.length; i++) {
+      if (document.activeElement == field[i].children[0]) {
+        field[++i].children[0].focus();
+        break;
+      }
+    }
   }
   if (e.key == "ArrowLeft") {
-    console.log("work");
+    field.forEach((x,y) => {
+      if(document.activeElement == x.children[0]){
+        field[--y].children[0].focus();
+        }
+    });
   }
   if (e.key == "ArrowDown") {
-    field.forEach((x,y) => {
-      // console.log("x is: " + typeof x, "y is: " +typeof y);
-      if (x.children[0]===document.activeElement) {
-        let d = y+9;
-        console.log(typeof d);
-        field[d].children[0].focus();
-
-        // console.log(field[y].children[0].focus());
+    for (let i = 0; i < field.length; i++) {
+      if (document.activeElement == field[i].children[0] && i<72) {
+        field[i+9].children[0].focus();
+        break;
       }
-      // console.log(x.children[0]==document.activeElement);
-    });
-    console.log("work");
+    }
   }
 });
-

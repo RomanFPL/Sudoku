@@ -16,7 +16,7 @@
       <div class="game">
       <h1>Sudoku</h1>
       <div class="wrap-field">
-      <div class="input-item"><input type="text"></div>
+      <div class="input-item" ><input type="text"></div>
       <div class="input-item"><input type="text"></div>
       <div class="input-item"><input type="text"></div>
       <div class="input-item"><input type="text"></div>
